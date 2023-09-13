@@ -13,12 +13,22 @@
 
   <body>
     <header class="shadow-sm">
-      <div class="container">
+      <div class="container m-0 p-0 col-12">
+        <div class="row bg-light col-12 m-0 p-0">
+          <h2 class="m-3">LOGO</h2>
+          <h6 class="ml-auto mr-3 my-auto">
+            <i class="fa-solid fa-user"></i>
+            <% if user_signed_in? %>
+            <% elsif admin_signed_in? %>
+              
+            <% end %>
+          </h6>
+        </div>
         <nav class="navbar navbar-expand-lg navbar-light bg-secondary">
           <div class="row">
             <div class="collapse navbar-collapse">
               <ul class="navbar-nav">
-                
+
               </ul>
             </div>
           </div>
