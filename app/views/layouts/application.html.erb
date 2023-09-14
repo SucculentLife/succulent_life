@@ -74,6 +74,32 @@
                       <i class="fa-solid fa-calendar-days"></i> 営業日
                     <% end %>
                   </li>
+                <% elsif %>
+                  <li class="nav-item mx-3">
+                    <%= link_to homes_about_path, class: "text-light" do %>
+                      <i class="fa-solid fa-house"></i> About
+                    <% end %>
+                  </li>
+                  <li class="nav-item mx-3">
+                    <%= link_to items_path, class: "text-light" do %>
+                      <i class="fa-solid fa-store"></i> 商品一覧
+                    <% end %>
+                  </li>
+                  <li class="nav-item mx-3">
+                    <%= link_to admin_items_path, class: "text-light" do %>
+                      <i class="fa-solid fa-school"></i> 体験教室
+                    <% end %>
+                  </li>
+                  <li class="nav-item mx-3">
+                    <%= link_to blogs_path, class: "text-light" do %>
+                      <i class="fa-solid fa-pen"></i> ブログ
+                    <% end %>
+                  </li>
+                  <li class="nav-item mx-3">
+                    <%= link_to blogs_path, class: "text-light" do %>
+                      <i class="fa-solid fa-cart-shopping"></i> カート
+                    <% end %>
+                  </li>
                 <% else %>
                   <li class="nav-item mx-3">
                     <%= link_to homes_about_path, class: "text-light" do %>
