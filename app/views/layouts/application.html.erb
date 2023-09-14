@@ -11,15 +11,137 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
+  <body class="d-flex flex-column vh-100">
     <header class="shadow-sm">
-      <nav class="navbar navbar-expand-lg navbar-light">
-      </nav>
+      <div class="container m-0 p-0 col-12">
+        <div class="row bg-light col-12 m-0 p-0">
+          <%= link_to root_path, class: "link" do %>
+            <h2 class="m-3">LOGO</h2>
+          <% end %>
+          <h6 class="ml-auto mr-3 my-auto">
+            <% if user_signed_in? %>
+              <%= link_to users_current_user_path, class: "link" do %>
+                <i class="fa-solid fa-circle-user"></i> <%= current_user.last_name %><%= current_user.first_name %> さま
+              <% end %>
+            <% elsif admin_signed_in? %>
+              <%= link_to destroy_admin_session_path, method: :delete, class: "link" do %>
+                <i class="fa-solid fa-circle-user"></i> ログアウト
+              <% end %>
+            <% else %>
+              <%= link_to new_user_session_path, class: "link" do %>
+                <i class="fa-solid fa-circle-user"></i> ログイン
+              <% end %>
+            <% end %>
+          </h6>
+        </div>
+        <nav class="navbar navbar-expand-lg navbar-light bg-secondary">
+          <div class="row">
+            <div class="collapse navbar-collapse">
+              <ul class="navbar-nav px-4">
+                <% if admin_signed_in? %>
+                  <li class="nav-item mx-3">
+                    <%= link_to admin_customers_path, class: "text-light" do %>
+                      <i class="fa-solid fa-users"></i> 会員一覧
+                    <% end %>
+                  </li>
+                  <li class="nav-item mx-3">
+                    <%= link_to admin_items_path, class: "text-light" do %>
+                      <i class="fa-solid fa-store"></i> 商品一覧
+                    <% end %>
+                  </li>
+                  <li class="nav-item mx-3">
+                    <%= link_to admin_items_path, class: "text-light" do %>
+                      <i class="fa-solid fa-school"></i> 体験教室
+                    <% end %>
+                  </li>
+                  <li class="nav-item mx-3">
+                    <%= link_to admin_orders_path, class: "text-light" do %>
+                      <i class="fa-solid fa-cart-shopping"></i> 注文一覧
+                    <% end %>
+                  </li>
+                  <li class="nav-item mx-3">
+                    <%= link_to admin_genres_path, class: "text-light" do %>
+                      <i class="fa-solid fa-list-ul"></i> ジャンル
+                    <% end %>
+                  </li>
+                  <li class="nav-item mx-3">
+                    <%= link_to admin_blogs_path, class: "text-light" do %>
+                      <i class="fa-solid fa-pen"></i> ブログ
+                    <% end %>
+                  </li>
+                  <li class="nav-item mx-3">
+                    <%= link_to admin_blogs_path, class: "text-light" do %>
+                      <i class="fa-solid fa-calendar-days"></i> 営業日
+                    <% end %>
+                  </li>
+                <% elsif %>
+                  <li class="nav-item mx-3">
+                    <%= link_to homes_about_path, class: "text-light" do %>
+                      <i class="fa-solid fa-house"></i> About
+                    <% end %>
+                  </li>
+                  <li class="nav-item mx-3">
+                    <%= link_to items_path, class: "text-light" do %>
+                      <i class="fa-solid fa-store"></i> 商品一覧
+                    <% end %>
+                  </li>
+                  <li class="nav-item mx-3">
+                    <%= link_to admin_items_path, class: "text-light" do %>
+                      <i class="fa-solid fa-school"></i> 体験教室
+                    <% end %>
+                  </li>
+                  <li class="nav-item mx-3">
+                    <%= link_to blogs_path, class: "text-light" do %>
+                      <i class="fa-solid fa-pen"></i> ブログ
+                    <% end %>
+                  </li>
+                  <li class="nav-item mx-3">
+                    <%= link_to blogs_path, class: "text-light" do %>
+                      <i class="fa-solid fa-cart-shopping"></i> カート
+                    <% end %>
+                  </li>
+                <% else %>
+                  <li class="nav-item mx-3">
+                    <%= link_to homes_about_path, class: "text-light" do %>
+                      <i class="fa-solid fa-house"></i> About
+                    <% end %>
+                  </li>
+                  <li class="nav-item mx-3">
+                    <%= link_to items_path, class: "text-light" do %>
+                      <i class="fa-solid fa-store"></i> 商品一覧
+                    <% end %>
+                  </li>
+                  <li class="nav-item mx-3">
+                    <%= link_to admin_items_path, class: "text-light" do %>
+                      <i class="fa-solid fa-school"></i> 体験教室
+                    <% end %>
+                  </li>
+                  <li class="nav-item mx-3">
+                    <%= link_to blogs_path, class: "text-light" do %>
+                      <i class="fa-solid fa-pen"></i> ブログ
+                    <% end %>
+                  </li>
+                <% end %>
+              </ul>
+            </div>
+          </div>
+        </nav>
+      </div>
     </header>
 
     <main class="mb-auto">
       <p class="m-3"><%= flash[:notice] %></p>
       <%= yield %>
     </main>
+
+    <footer class="bg-secondary p-4">
+      <div class="text-light text-right">
+        <h5>
+          <i class="fa-brands fa-instagram mx-2"></i>
+          <i class="fa-brands fa-square-x-twitter mx-2"></i>
+          <i class="fa-brands fa-line mx-2"></i>
+        </h5>
+      </div>
+    </footer>
   </body>
 </html>
