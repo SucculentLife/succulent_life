@@ -1,0 +1,91 @@
+<div class="container">
+  <div class="row">
+    <h4 class="m-5 px-4 bg-light">商品新規登録</h4>
+  </div>
+
+  <% if @item.errors.any? %>
+    <%= @item.errors.count %>件のエラーが発生しました
+    <ul>
+      <% @item.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  <% end %>
+
+  <%= form_with model: @item, url: admin_items_path do |f| %>
+    <div class="row m-3 d-flex justify-content-center">
+      <div class="col-md-2 text-nowrap px-0">
+        商品画像
+      </div>
+      <div class="col-md-4 px-0">
+        <%= f.fields_for :photos do |image| %>
+          <%= image.label :image, class: "dropzone-box", for: "upload-image" do %>
+            <%= image.file_field :image, multiple: true, name: 'good_photos[image][]', id: "upload-image", class: "upload-image", 'data-image': 0 %>
+          <% end %>
+        <% end %>
+      </div>
+      <div class="col-md-1"></div>
+    </div>
+
+    <div class="row m-3 d-flex justify-content-center">
+      <div class="col-md-2 text-nowrap px-0">
+        商品名
+      </div>
+      <div class="col-md-4 px-0">
+        <%= f.text_field :name, placeholder: "商品名", class: "col-12" %>
+      </div>
+      <div class="col-md-1"></div>
+    </div>
+
+    <div class="row m-3 d-flex justify-content-center">
+      <div class="col-md-2 text-nowrap px-0">
+        商品説明
+      </div>
+      <div class="col-md-4 px-0">
+        <%= f.text_area :introduction, placeholder: "ここに説明文を記述します", class: "col-12", rows: "6" %>
+      </div>
+      <div class="col-md-1"></div>
+    </div>
+
+    <div class="row m-3 d-flex justify-content-center">
+      <div class="col-md-2 text-nowrap px-0">
+        ジャンル
+      </div>
+      <div class="col-md-4 px-0">
+        <%= f.select :genre_id, options_from_collection_for_select(Genre.all, :id, :name), include_blank: "-- 選択して下さい --" %>
+      </div>
+      <div class="col-md-1"></div>
+    </div>
+
+    <div class="row m-3 d-flex justify-content-center">
+      <div class="col-md-2 text-nowrap px-0">
+        税抜価格
+      </div>
+      <div class="col-11 col-md-4 px-0">
+        <%= f.text_field :price, placeholder: "1000", class: "col-12" %>
+      </div>
+      <div class="col-1 col-md-1 pl-1">円</div>
+    </div>
+
+    <div class="row m-3 d-flex justify-content-center">
+      <div class="col-md-2 text-nowrap px-0">
+        販売ステータス
+      </div>
+      <div class="col-11 col-md-4 px-0 d-flex">
+        <div>
+          <%= f.radio_button :is_active, true %>
+          <%= f.label :is_active_true, "販売中", class: "border-bottom mr-4" %>
+        </div>
+        <div>
+          <%= f.radio_button :is_active, false %>
+          <%= f.label :is_active_false, "販売停止中", class: "border-bottom" %>
+        </div>
+      </div>
+      <div class="col-md-1"></div>
+    </div>
+
+    <div class="row m-3 d-flex justify-content-center">
+      <%= f.submit "新規登録", class: "actions btn btn-success font-weight-bold px-5 py-1 mb-3" %>
+    </div>
+  <% end %>
+</div>

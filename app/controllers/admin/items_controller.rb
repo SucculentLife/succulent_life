@@ -1,21 +1,16 @@
 class Admin::ItemsController < ApplicationController
   def new
     @item = Item.new
-    @item.photos.build()
+    @item.photos.build
   end
 
   def create
     @item = Item.new(item_params)
-    respond_to do |format|
-      if @item.save!
-        params[:item_photos][:image].each do |image|
-          @item.photos.create(image: image, item_id: @item.id)
-        end
-        redirect_to root_path
-      else
-        @good.photos.build
-        render :new
-      end
+    if @item.save
+      redirect_to admin_item_path(@item.id)
+    else
+      render :new
+      flash.now[:alert] = "商品出品に失敗しました"
     end
   end
 
