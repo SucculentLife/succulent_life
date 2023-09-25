@@ -17,14 +17,10 @@
       <div class="col-md-2 text-nowrap px-0">
         商品画像
       </div>
-      <div class="col-md-4 px-0">
-        <%= f.fields_for :photos do |image| %>
-          <%= image.label :image, class: "dropzone-box", for: "upload-image" do %>
-            <%= image.file_field :image, multiple: true, name: 'good_photos[image][]', id: "upload-image", class: "upload-image", 'data-image': 0 %>
-          <% end %>
-        <% end %>
+      <div class="col-md-5 px-0">
+        <%= f.file_field :images, multiple: true, onchange: "loadImage(this);" %>
+        <div id="preview"></div>
       </div>
-      <div class="col-md-1"></div>
     </div>
 
     <div class="row m-3 d-flex justify-content-center">
@@ -89,3 +85,17 @@
     </div>
   <% end %>
 </div>
+
+
+<script>
+  function loadImage(obj) {
+    document.getElementById('preview').innerHTML = '';
+  	for (i = 0; i < obj.files.length; i++) {
+  		var fileReader = new FileReader();
+  		fileReader.onload = (function (e) {
+  			document.getElementById('preview').innerHTML += '<img style="width: 100px; height: 100px; object-fit: cover;" class="p-3" src="' + e.target.result + '">';
+  		});
+  		fileReader.readAsDataURL(obj.files[i]);
+  	}
+  }
+</script>
