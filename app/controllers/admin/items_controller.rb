@@ -21,15 +21,21 @@ class Admin::ItemsController < ApplicationController
 
   def show
     @item = Item.find(params[:id])
+    @photos = @item.photos
+    @i = 0
   end
 
   def edit
     @item = Item.find(params[:id])
+    @photos = @item.photos
   end
 
   def update
     item = Item.find(params[:id])
     if item.update(item_params)
+      params[:item][:images].each do |image|
+        @item.photos.update(image: image, item_id: @item.id)
+      end
       redirect_to admin_item_path(params[:id])
     else
       render :edit

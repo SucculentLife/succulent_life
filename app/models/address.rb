@@ -1,5 +1,5 @@
 class Address < ApplicationRecor
-  belongs_to :customer
+  belongs_to :user
 
   validates :name, presence: true, length: {minimum: 2}
   validates :postal_code, presence: true, length: {is: 7}, numericality: true

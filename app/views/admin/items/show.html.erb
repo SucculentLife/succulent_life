@@ -1,0 +1,87 @@
+<div class="container">
+  <div class="row">
+    <h4 class="m-5 px-4 bg-light">商品詳細</h4>
+  </div>
+
+  <div class="row">
+    <div class="col-4 p-0">
+      <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+          <% @photos.each do |photo| %>
+            <li data-target="#carouselExampleIndicators" data-slide-to="<%= @i %>" class="<%= 'active' if photo.id == @photos[0].id %>"></li>
+            <% @i = @i +1 %>
+          <% end %>
+        </ol>
+        <div class="carousel-inner">
+          <% @photos.each do |photo| %>
+            <div class="carousel-item <%= 'active' if photo.id == @photos[0].id %>">
+              <%= image_tag photo.image.url,  class: "d-block w-100 img" %>
+            </div>
+          <% end %>
+        </div>
+        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
+      </div>
+    </div>
+    <div class="col-8 px-auto">
+      <div class="row my-3 d-flex justify-content-center align-items-center">
+        <div class="col-md-3 text-nowrap pr-0">
+          商品名
+        </div>
+        <div class="col-md-7 pl-0">
+          <%= @item.name %>
+        </div>
+      </div>
+      <div class="row my-3 d-flex justify-content-center align-items-center">
+        <div class="col-md-3 text-nowrap pr-0">
+          商品説明
+        </div>
+        <div class="col-md-7 pl-0">
+          <%= @item.introduction %>
+        </div>
+      </div>
+      <div class="row my-3 d-flex justify-content-center align-items-center">
+        <div class="col-md-3 text-nowrap pr-0">
+          ジャンル
+        </div>
+        <div class="col-md-7 pl-0">
+          <%= @item.genre.name %>
+        </div>
+      </div>
+      <div class="row my-3 d-flex justify-content-center align-items-center">
+        <div class="col-md-3 text-nowrap pr-0">
+          税込価格<br/>
+          (税抜価格)
+        </div>
+        <div class="col-md-7 pl-0">
+          <%= (@item.price * 1.1).floor.to_s(:delimited) %>（<%= @item.price.to_s(:delimited) %>）円
+        </div>
+      </div>
+      <div class="row my-3 d-flex justify-content-center align-items-center">
+        <div class="col-md-3 text-nowrap pr-0">
+          販売ステータス
+        </div>
+        <div class="col-md-7 pl-0">
+          <%= form_with model: @item do |f| %>
+              <% if @item.is_active == true %>
+                <strong class="text-success"><%= admin_item_status_name(@item) %></strong>
+               <% else %>
+                <strong class="text-secondary"><%= admin_item_status_name(@item) %></strong>
+              <% end %>
+          <% end %>
+        </div>
+      </div>
+      <div class="row my-3 d-flex justify-content-center align-items-center">
+        <%= link_to "編集する", edit_admin_item_path, class: "btn btn-success font-weight-bold px-4 mx-auto py-2 my-3" %>
+      </div>
+    </div>
+  </div>
+
+
+</div>
