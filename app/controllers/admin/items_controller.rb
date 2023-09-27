@@ -31,8 +31,8 @@ class Admin::ItemsController < ApplicationController
   end
 
   def update
-    item = Item.find(params[:id])
-    if item.update(item_params)
+    @item = Item.find(params[:id])
+    if @item.update(item_params)
       params[:item][:images].each do |image|
         @item.photos.update(image: image, item_id: @item.id)
       end

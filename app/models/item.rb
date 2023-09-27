@@ -7,7 +7,7 @@ class Item < ApplicationRecord
   has_many :order_details
 
   validates :name, presence: true
-  validates :introduction, presence: true, length: {in: 2..50}
+  validates :introduction, presence: true
   validates :price, presence: true, numericality: {only_integer: true}
 
   def with_tax_price
