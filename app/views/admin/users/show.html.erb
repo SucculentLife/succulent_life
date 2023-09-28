@@ -1,0 +1,71 @@
+<div class="container">
+  <div class="row">
+    <h4 class="m-5 px-4 bg-light">
+      <%= @user.last_name %><%= @user.first_name %>さんの会員詳細
+    </h4>
+  </div>
+
+  <div class="m-4">
+    <div class="row">
+      <p class="col-sm-4 col-md-3 col-lg-2 text-nowrap">
+        会員ID
+      </p>
+      <p class="col-sm-8"><%= @user.id %></p>
+    </div>
+    <div class="row">
+      <p class="col-sm-4 col-md-3 col-lg-2 text-nowrap">
+        氏名
+      </p>
+      <p class="col-sm-8"><%= @user.last_name %>　<%= @user.first_name %></p>
+    </div>
+    <div class="row">
+      <p class="col-sm-4 col-md-3 col-lg-2 text-nowrap">
+        フリガナ
+      </p>
+      <p class="col-sm-8"><%= @user.last_name_kana %>　<%= @user.first_name_kana %></p>
+    </div>
+    <div class="row">
+      <p class="col-sm-4 col-md-3 col-lg-2 text-nowrap">
+        郵便番号
+      </p>
+      <p class="col-sm-8"><%= @user.postal_code %></p>
+    </div>
+    <div class="row">
+      <p class="col-sm-4 col-md-3 col-lg-2 text-nowrap">
+        住所
+      </p>
+      <p class="col-sm-8"><%= @user.address %></p>
+    </div>
+    <div class="row">
+      <p class="col-sm-4 col-md-3 col-lg-2 text-nowrap">
+        電話番号
+      </p>
+      <p class="col-sm-8"><%= @user.telephone_number %></p>
+    </div>
+    <div class="row">
+      <p class="col-sm-4 col-md-3 col-lg-2 text-nowrap">
+        メールアドレス
+      </p>
+      <p class="col-sm-8"><%= @user.email %></p>
+    </div>
+    <div class="row">
+      <p class="col-sm-4 col-md-3 col-lg-2 text-nowrap">
+        会員ステータス
+      </p>
+      <p class="col-sm-8">
+        <% if @user.is_deleted == true %>
+          <strong class="text-secondary"><%= user_status_name(@user) %></strong>
+        <% else %>
+          <strong class="text-success"><%= user_status_name(@user) %></strong>
+        <% end %>
+      </p>
+    </div>
+    <div class="row">
+      <div class="col-sm-4 col-md-3 col-lg-2 text-nowrap"></div>
+      <div class="col-sm-8">
+        <%= link_to "編集する", edit_admin_user_path(@user.id), class: "btn btn-success px-3 py-1" %>
+        <%= link_to "注文履歴一覧を見る", admin_path, class: "btn btn-primary px-3 py-1 ml-5" %>
+      </div>
+    </div>
+  </div>
+</div>
