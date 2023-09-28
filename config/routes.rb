@@ -33,9 +33,9 @@ Rails.application.routes.draw do
   namespace :admin do
     root to: "homes#top"
     get "orders/user_show/:id" => "orders#user_show"
-    resources :items, only: [:index, :new, :create, :show, :edit, :update]
+    resources :items, only: [:index, :new, :create, :show, :edit, :update, :destroy]
     resources :genres, only: [:create, :index, :edit, :update]
-    resources :customers, only: [:index, :show, :edit, :update]
+    resources :users, only: [:index, :show, :edit, :update]
     resources :orders, only: [:show, :update, :index]
     resources :blogs, only: [:new, :create, :index, :show, :edit, :update]
   end

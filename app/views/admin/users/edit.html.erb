@@ -1,0 +1,88 @@
+<div class="container">
+  <div class="row">
+      <h4 class="m-5 px-4 bg-light">
+          <%= @user.last_name %><%= @user.first_name %>さんの会員情報編集
+      </h4>
+  </div>
+
+  <div class="m-4">
+    <%= form_with model: @user, url: admin_user_path(@user.id) do |f| %>
+      <div class="row">
+        <p class="col-sm-4 col-md-3 col-lg-2 text-nowrap">
+          会員ID
+        </p>
+        <div class="col-sm-8 d-md-flex">
+          <p class="col-sm-8"><%= @user.id %></p>
+        </div>
+      </div>
+      <div class="row">
+        <p class="col-sm-4 col-md-3 col-lg-2 text-nowrap">
+          氏名
+        </p>
+        <div class="col-sm-8 d-md-flex">
+          <p class="pr-4 text-nowrap"><%= f.text_field :last_name, autofocus: true, placeholder: "令和" %></p>
+          <p class="text-nowrap"><%= f.text_field :first_name, placeholder: "道子" %></p>
+        </div>
+      </div>
+
+      <div class="row">
+        <p class="col-sm-4 col-md-3 col-lg-2 text-nowrap">
+          フリガナ
+        </p>
+        <div class="col-sm-8 d-md-flex">
+          <p class="pr-4 text-nowrap"><%= f.text_field :last_name_kana, placeholder: "レイワ" %></p>
+          <p class="text-nowrap"><%= f.text_field :first_name_kana, placeholder: "ミチコ" %></p>
+        </div>
+      </div>
+
+      <div class="row">
+        <p class="col-sm-4 col-md-3 col-lg-2 text-nowrap">
+          郵便番号
+        </p>
+        <p class="col-sm-8"><%= f.text_field :postal_code, placeholder: "00000000" %></p>
+      </div>
+
+      <div class="row">
+        <p class="col-sm-4 col-md-3 col-lg-2 text-nowrap">
+          住所
+        </p>
+        <p class="col-sm-8 text-nowrap"><%= f.text_field :address, class: "col-sm-8 px-1", placeholder: "東京都渋谷区代々木神園町0-0" %></p>
+      </div>
+
+      <div class="row">
+        <p class="col-sm-4 col-md-3 col-lg-2 text-nowrap">
+          電話番号
+        </p>
+        <p class="col-sm-8"><%= f.text_field :telephone_number, placeholder: "0000000000" %></p>
+      </div>
+
+      <div class="row">
+        <p class="col-sm-4 col-md-3 col-lg-2 text-nowrap">
+          メールアドレス
+        </p>
+        <p class="col-sm-8"><%= f.email_field :email, autocomplete: "email", placeholder: "sample@example.com" %></p>
+      </div>
+
+      <div class="row">
+        <p class="col-sm-4 col-md-3 col-lg-2 text-nowrap">
+          会員ステータス
+        </p>
+        <div class="col-sm-8 d-flex">
+          <div>
+            <%= f.radio_button :is_deleted, false %>
+            <%= f.label :is_deleted_false, "有効", class: "border-bottom mr-4" %>
+          </div>
+          <div>
+            <%= f.radio_button :is_deleted, true %>
+            <%= f.label :is_deleted_true, "退会", class: "border-bottom" %>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <p class="col-sm-4 col-md-3 col-lg-2 text-nowrap"></p>
+        <p class="col-sm-8"><%= f.submit "変更を保存", class: "actions btn btn-success font-weight-bold px-4 py-2 my-3" %></p>
+      </div>
+    <% end %>
+  </div>
+</div>
