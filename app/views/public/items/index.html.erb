@@ -1,3 +1,4 @@
+
 <div class="container">
   <div class="row">
     <h3 class="mx-auto mt-3"><strong>〜 Items 〜</strong></h3>
@@ -16,5 +17,8 @@
         <% end %>
       </div>
     <% end %>
+    <div class="mx-auto my-3">
+    <%= paginate @items %>
+  </div>
   </div>
 </div>
