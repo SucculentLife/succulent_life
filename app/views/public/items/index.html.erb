@@ -15,8 +15,15 @@
             <%= link_to item_path(item.id), class: "link" do %>
               <div class="card">
                 <%= image_tag item.photos[0].image.url, class: "col-12 img", style: "object-fit: cover;" %>
-                <div class="card-img-overlay text-light mt-auto p-0 d-flex align-items-center justify-content-center" style="background-color: rgba(0,0,0,0.5); width: 100%; height: 15%;">
-                  <%= item.name %>　¥<%= (item.price * 1.1).floor.to_s(:delimited) %>-
+                <div class="card-img-overlay mt-auto p-0 d-flex align-items-center justify-content-center" style="background-color: rgba(0,0,0,0.5); width: 100%; height: 15%;">
+                  <p class="text-light text-nowrap small m-0 mr-2"><%= item.name %></p>
+                  <%= form_with model: item do |f| %>
+                    <% if item.is_active == true %>
+                      <p class="text-light text-nowrap small m-0">¥<%= (item.price * 1.1).floor.to_s(:delimited) %>-</p>
+                    <% else %>
+                      <p class="text-secondary text-nowrap small m-0"><%= item_status_name(item) %></p>
+                    <% end %>
+                  <% end %>
                 </div>
               </div>
             <% end %>
