@@ -1,0 +1,64 @@
+<div class="container py-5">
+    <div class="row">
+      <div class="col-4 p-0">
+        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+          <ol class="carousel-indicators">
+            <% @photos.each do |photo| %>
+              <li data-target="#carouselExampleIndicators" data-slide-to="<%= @i %>" class="<%= 'active' if photo.id == @photos[0].id %>"></li>
+              <% @i = @i + 1 %>
+            <% end %>
+          </ol>
+          <div class="carousel-inner">
+            <% @photos.each do |photo| %>
+              <div class="carousel-item <%= 'active' if photo.id == @photos[0].id %>">
+                <%= image_tag photo.image.url,  class: "d-block w-100 img" %>
+              </div>
+            <% end %>
+          </div>
+          <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+          </a>
+          <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+          </a>
+        </div>
+      </div>
+      <div class="col-8">
+        <div class="row my-3 ml-3">
+          <h4><strong><%= @item.name %></strong></h4>
+        </div>
+        <div class="row my-3 ml-3">
+          <h5><%= @item.introduction %></h5>
+        </div>
+        <div class="row mt-5 d-flex align-items-end ml-3">
+          <h4 class="m-0">¥<%= (@item.price * 1.1).floor.to_s(:delimited) %></h4>
+          <p class="small m-0">（税込）</p>
+          <%= form_with model: @item do |f| %>
+            <% if @item.is_active == true %>
+              <strong class="text-success my-0 ml-3"><%= item_status_name(@item) %></strong>
+            <% else %>
+              <strong class="text-secondary my-0 ml-3"><%= item_status_name(@item) %></strong>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+    <div class="row my-4">
+      <div class="col-4"></div>
+      <div class="col-8">
+        <% if @item.is_active == true %>
+          <%= form_with model: @cart_item, url: cart_items_path do |f| %>
+            <div class="col-6"></div>
+            <div class="col-6 d-flex">
+              <%= f.select :amount, *[1..10], include_blank: "個数選択" %>
+              <%= f.hidden_field :item_id, :value => @item.id %>
+              <%= f.submit "カートに入れる", class: "btn btn-success font-weight-bold px-3 py-1 ml-5" %>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+</div>
