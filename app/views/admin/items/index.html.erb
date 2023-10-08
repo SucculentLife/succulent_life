@@ -23,14 +23,18 @@
         <% @items.each do |item| %>
           <tr>
             <td class="align-middle"><%= item.id %></td>
-            <td class="align-middle">
+            <td class="align-middle col-4">
               <%= link_to admin_item_path(item.id), class: "link" do %>
-                <%= image_tag item.photos[0].image.url, class: "img-fluid", style: "width: 60px; height: 60px; object-fit: cover;" %>
+                <% if item.photos.present? %>
+                  <%= image_tag item.photos[0].image.url, class: "img col-2" %>
+                <% else %>
+                  <%= image_tag "default.jpg", class: "img col-2" %>
+                <% end %>
                 <%= item.name %>
               <% end %>
             </td>
             <td class="align-middle"><%= item.price.to_s(:delimited) %></td>
-            <td class="align-middle"><%= item.genre.name %></td>
+            <td class="align-middle col-4"><%= item.genre.name %></td>
             <td class="align-middle">
               <% if item.is_active == true %>
                 <strong class="text-success"><%= admin_item_status_name(item) %></strong>

@@ -1,0 +1,41 @@
+<div class="container col-11">
+  <div class="row">
+    <div class="col-3 sidebar_fixed">
+      <%= render 'genre_search', genres: @genres %>
+    </div>
+
+    <div class="col">
+      <div class="row">
+        <h3 class="mx-auto mt-3"><strong>〜 Items 〜</strong></h3>
+      </div>
+
+      <div class="row">
+        <% @items.each do |item| %>
+          <div class="col-md-3 px-3 mt-3">
+            <%= link_to item_path(item.id), class: "link" do %>
+              <%= image_tag item.photos[0].image.url, class: "col-12 img", style: "object-fit: cover;" %>
+              <div class="m-1">
+                <p class="text-nowrap small m-0"><%= item.name %></p>
+                <%= form_with model: item do |f| %>
+                  <% if item.is_active == true %>
+                    <p class="text-nowrap small m-0">¥<%= (item.price * 1.1).floor.to_s(:delimited) %>-</p>
+                  <% else %>
+                    <div class="d-flex">
+                      <p class="text-nowrap small m-0"><del>¥<%= (item.price * 1.1).floor.to_s(:delimited) %>-</del></p>
+                      <p class="text-secondary text-nowrap small m-0 ml-3"><%= item_status_name(item) %></p>
+                    </div>
+                  <% end %>
+                <% end %>
+              </div>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+      <div class="row">
+        <div class="mx-auto my-3">
+          <%= paginate @items %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
