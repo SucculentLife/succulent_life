@@ -33,9 +33,11 @@ class Admin::ItemsController < ApplicationController
   def update
     @item = Item.find(params[:id])
     if @item.update(item_params)
-      @item.photos.delete_all
-      params[:item][:images].each do |image|
+      if params[:item][:images].present?
+        @item.photos.delete_all
+          params[:item][:images].each do |image|
         @item.photos.create(image: image, item_id: @item.id)
+        end
       end
       redirect_to admin_item_path(params[:id])
     else

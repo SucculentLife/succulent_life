@@ -12,7 +12,7 @@
   </head>
 
   <body class="d-flex flex-column vh-100">
-    <header class="shadow-sm" style="background-color: #FDF5E6;">
+    <header class="shadow-sm">
       <div class="container m-0 p-0 col-12">
         <div class="row col-12 m-0 p-0">
           <%= link_to root_path, class: "link" do %>
@@ -129,7 +129,7 @@
       </div>
     </header>
 
-    <main class="mb-auto" style="background-color: #FDF5E6;">
+    <main class="mb-auto">
       <%= flash[:notice] %>
       <%= yield %>
     </main>
