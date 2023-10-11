@@ -22,7 +22,7 @@
         <% @cart_items.each do |cart_item| %>
           <tr>
             <td class="align-middle">
-                <%= image_tag cart_item.item.photos[0].image.url, class: "img col-2 mr-3" %>
+                <%= image_tag cart_item.item.photos[0].image.url, class: "img col-1 mr-3" %>
                 <%= cart_item.item.name %>
             </td>
             <td class="align-middle"><%= cart_item.item.with_tax_price.to_s(:delimited) %></td>
