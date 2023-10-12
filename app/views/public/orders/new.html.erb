@@ -1,0 +1,69 @@
+<div class="container">
+  <div class="row">
+    <h4 class="m-5 px-4 bg-light">注文情報入力</h4>
+  </div>
+
+  <% if @order.errors.any? %>
+    <%= @order.errors.count %>件のエラーが発生しました
+    <ul>
+      <% @order.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  <% end %>
+
+  <%= form_with model: @order, url: orders_confirm_path do |f| %>
+    <div class="payment_method">
+      <div class="row">
+        <h5><strong>支払方法</strong></h5>
+      </div>
+      <div class="row mx-3 mb-3">
+        <div class="col-12">
+          <%= f.radio_button :payment_method, Order.payment_methods.key(0) %>
+          <%= f.label :payment_method_credit_card, Order.payment_methods_i18n[:credit_card] %>
+        </div>
+        <div class="col-12">
+          <%= f.radio_button :payment_method, Order.payment_methods.key(1) %>
+          <%= f.label :payment_method_transfer, Order.payment_methods_i18n[:transfer]%>
+        </div>
+      </div>
+    </div>
+
+    <div class="select_address">
+      <div class="row">
+        <h5><strong>お届け先</strong></h5>
+      </div>
+      <div class="row mx-3">
+        <div class="col-12">
+          <p class="m-0"><%= f.radio_button :select_address, 0, {:checked => true} %> ご自身の住所</p>
+          <p class="ml-4"><%= current_user.user_address_display %></p>
+        </div>
+        <div class="col-12">
+          <p class="m-0"><%= f.radio_button :select_address, 1 %> 登録済住所から選択</p>
+          <p class="ml-4 mt-1"><%= f.select :address_id, options_from_collection_for_select(@addresses, :id, :address_display) %></p>
+        </div>
+        <div class="col-12">
+          <p class="m-0"><%= f.radio_button :select_address, 2 %> 新しいお届け先</p>
+          <table class="ml-4">
+            <tr>
+              <td>郵便番号（ハイフンなし）</td>
+              <td><%= f.text_field :postal_code, autofocus: true, placeholder: "00000000" %></td>
+            </tr>
+            <tr>
+              <td>住所</td>
+              <td><%= f.text_field :address,size: "50", placeholder: "東京都渋谷区代々木神園町0-0" %></td>
+            </tr>
+            <tr>
+              <td>宛名</td>
+              <td><%= f.text_field :name, placeholder: "令和道子" %></td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="submit text-center my-4">
+      <%= f.submit "確認画面へ進む", class: "btn btn-primary" %>
+    </div>
+  <% end %>
+</div>

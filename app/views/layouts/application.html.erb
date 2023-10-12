@@ -15,8 +15,14 @@
     <header class="shadow-sm">
       <div class="container m-0 p-0 col-12">
         <div class="row col-12 m-0 p-0">
-          <%= link_to root_path, class: "link" do %>
-            <h2 class="m-3">LOGO</h2>
+          <% if admin_signed_in? %>
+            <%= link_to admin_root_path, class: "link" do %>
+              <h2 class="m-3">LOGO</h2>
+            <% end %>
+          <% else %>
+            <%= link_to root_path, class: "link" do %>
+              <h2 class="m-3">LOGO</h2>
+            <% end %>
           <% end %>
           <h6 class="ml-auto mr-3 my-auto">
             <% if user_signed_in? %>
@@ -96,7 +102,7 @@
                     <% end %>
                   </li>
                   <li class="nav-item mx-3">
-                    <%= link_to blogs_path, class: "text-light" do %>
+                    <%= link_to cart_items_path, class: "text-light" do %>
                       <i class="fa-solid fa-cart-shopping"></i> カート
                     <% end %>
                   </li>
