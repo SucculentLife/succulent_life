@@ -62,3 +62,5 @@ gem "carrierwave"
 gem "mini_magick"
 
 gem "kaminari"
+
+gem "enum_help"

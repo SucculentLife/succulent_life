@@ -1,4 +1,4 @@
-class Address < ApplicationRecor
+class Address < ApplicationRecord
   belongs_to :user
 
   validates :name, presence: true, length: {minimum: 2}

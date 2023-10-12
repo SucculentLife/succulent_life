@@ -1,0 +1,81 @@
+<div class="container">
+  <div class="row">
+    <h4 class="mt-5 mx-5 px-4 bg-light">注文履歴詳細</h4>
+  </div>
+
+  <table class="my-4">
+    <tr>
+      <th class="text-nowrap"><h5><strong>購入者</strong></h5></th>
+      <td class="text-nowrap">
+        <%= link_to admin_path(@order.user_id), class: "link" do %>
+          <h5><%= @order.user.last_name %><%= @order.user.first_name %></h5>
+        <% end %>
+      </td>
+    </tr>
+    <tr>
+      <th class="text-nowrap"><h5><strong>注文日</strong></h5></th>
+      <td class="text-nowrap"><h5><%= @order.created_at.strftime('%Y/%m/%d') %></h5></td>
+    </tr>
+    <tr>
+      <th class="text-nowrap d-flex align-items-start"><h5><strong>配送先</strong></h5></th>
+      <td>
+        <h5>
+          〒<%= @order.postal_code %>　<%= @order.address %><br/>
+          <%= @order.name %>
+        </h5>
+      </td>
+    </tr>
+    <tr>
+      <th class="text-nowrap"><h5><strong>支払方法</strong></h5></th>
+      <td class="text-nowrap"><h5><%= @order.payment_method_i18n %></h5></td>
+    </tr>
+    <tr>
+      <th><h5 class="mr-5 text-nowrap"><strong>注文ステータス</strong></h5></th>
+      <td>
+        <%= form_with model: @order, url: admin_order_path, method: :patch, class: "d-flex" do |f| %>
+          <%= f.select :status, Order.statuses_i18n.invert, {prompt: false}, class: "form-control form-control-sm col-4 mr-5 text-center" %>
+          <%= f.submit "更新", class: "btn btn-success py-0" %>
+        <% end %>
+      </td>
+    </tr>
+  </table>
+
+  <div class="row my-4">
+    <table class="table table-borderless border-top border-bottom col-8">
+      <thead class="thead-light">
+        <tr>
+          <th>商品名</th>
+          <th>単価（税込）</th>
+          <th>数量</th>
+          <th>小計</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @order_details.each do |order_detail| %>
+          <tr>
+            <td class="text-nowrap"><%= order_detail.item.name %></td>
+            <td class="text-nowrap"><%= order_detail.price.to_s(:delimited) %></td>
+            <td><%= order_detail.amount %></td>
+            <td class="text-nowrap"><%= order_detail.subtotal.to_s(:delimited) %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <table class="col-3 ml-auto d-flex align-items-end">
+      <tr>
+        <th class="text-nowrap"><h5><strong>商品合計</strong></h5></th>
+        <td class="text-nowrap text-right"><h5><%= (@order.total_payment - @order.shipping_cost).to_s(:delimited) %>円</h5></td>
+      </tr>
+      <tr>
+        <th class="text-nowrap"><h5><strong>送料</strong></h5></th>
+        <td class="text-nowrap text-right"><h5><%= @order.shipping_cost.to_s(:delimited) %>円</h5></td>
+      </tr>
+      <tr>
+        <th><h5 class="text-nowrap mr-3"><strong>請求金額合計</strong></h5></th>
+        <td class="text-nowrap text-right"><h5>
+          <strong><%= @order.total_payment.to_s(:delimited) %>円</strong>
+        </h5></td>
+      </tr>
+    </table>
+  </div>
+</div>
