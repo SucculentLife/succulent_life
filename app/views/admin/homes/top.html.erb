@@ -4,10 +4,30 @@
 
 <div class="container">
   <div class="row">
-    <div class="col">
-      <%= link_to admin_users_path do %>
-        <p>会員一覧へ</p>
-      <% end %>
-    </div>
+    <%= link_to admin_users_path, class: "col link" do %>
+      <div class="p-3" style="background-color: #E18074;">
+        <p class="m-3 text-center">会員一覧へ</p>
+      </div>
+    <% end %>
+    <!--<%= link_to admin_users_path, class: "col link" do %>-->
+    <!--  <div class="p-3" style="background-color: #E26E51;">-->
+    <!--    <p class="m-3 text-center">体験教室へ</p>-->
+    <!--  </div>-->
+    <!--<% end %>-->
+    <%= link_to admin_users_path, class: "col link" do %>
+      <div class="p-3" style="background-color: #F8B549;">
+        <p class="m-3 text-center">商品一覧へ</p>
+      </div>
+    <% end %>
+    <!--<%= link_to admin_users_path, class: "col link" do %>-->
+    <!--  <div class="p-3" style="background-color: #DEE67B;">-->
+    <!--    <p class="m-3 text-center">ブログへ</p>-->
+    <!--  </div>-->
+    <!--<% end %>-->
+    <%= link_to admin_users_path, class: "col link" do %>
+      <div class="p-3" style="background-color: #D0EDDD;">
+        <p class="m-3 text-center">注文一覧へ</p>
+      </div>
+    <% end %>
   </div>
 </div>
