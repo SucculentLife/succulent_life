@@ -17,13 +17,16 @@
         <div class="row col-12 m-0 p-0">
           <% if admin_signed_in? %>
             <%= link_to admin_root_path, class: "link" do %>
-              <h2 class="m-3">LOGO</h2>
+              <%= image_tag 'logo.jpg', class: "col-12", style: "object-fit: cover; aspect-ratio: 4 / 1;" %>
             <% end %>
           <% else %>
             <%= link_to root_path, class: "link" do %>
-              <h2 class="m-3">LOGO</h2>
+              <%= image_tag 'logo.jpg', class: "col-12", style: "object-fit: cover; aspect-ratio: 4 / 1;" %>
             <% end %>
           <% end %>
+
+          <div class="my-auto"><%= flash[:notice] %></div>
+
           <h6 class="ml-auto mr-3 my-auto">
             <% if user_signed_in? %>
               <%= link_to users_current_user_path, class: "link" do %>
@@ -40,7 +43,8 @@
             <% end %>
           </h6>
         </div>
-        <nav class="navbar navbar-expand-lg navbar-light bg-secondary">
+
+        <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #382E30;">
           <div class="row">
             <div class="collapse navbar-collapse">
               <ul class="navbar-nav px-4">
@@ -55,11 +59,11 @@
                       <i class="fa-solid fa-store"></i> 商品一覧
                     <% end %>
                   </li>
-                  <li class="nav-item mx-3">
-                    <%= link_to admin_items_path, class: "text-light" do %>
-                      <i class="fa-solid fa-school"></i> 体験教室
-                    <% end %>
-                  </li>
+                  <!--<li class="nav-item mx-3">-->
+                  <!--  <%= link_to admin_items_path, class: "text-light" do %>-->
+                  <!--    <i class="fa-solid fa-school"></i> 体験教室-->
+                  <!--  <% end %>-->
+                  <!--</li>-->
                   <li class="nav-item mx-3">
                     <%= link_to admin_orders_path, class: "text-light" do %>
                       <i class="fa-solid fa-cart-shopping"></i> 注文一覧
@@ -70,16 +74,16 @@
                       <i class="fa-solid fa-list-ul"></i> ジャンル
                     <% end %>
                   </li>
-                  <li class="nav-item mx-3">
-                    <%= link_to admin_blogs_path, class: "text-light" do %>
-                      <i class="fa-solid fa-pen"></i> ブログ
-                    <% end %>
-                  </li>
-                  <li class="nav-item mx-3">
-                    <%= link_to admin_blogs_path, class: "text-light" do %>
-                      <i class="fa-solid fa-calendar-days"></i> 営業日
-                    <% end %>
-                  </li>
+                  <!--<li class="nav-item mx-3">-->
+                  <!--  <%= link_to admin_blogs_path, class: "text-light" do %>-->
+                  <!--    <i class="fa-solid fa-pen"></i> ブログ-->
+                  <!--  <% end %>-->
+                  <!--</li>-->
+                  <!--<li class="nav-item mx-3">-->
+                  <!--  <%= link_to admin_blogs_path, class: "text-light" do %>-->
+                  <!--    <i class="fa-solid fa-calendar-days"></i> 営業日-->
+                  <!--  <% end %>-->
+                  <!--</li>-->
                 <% elsif %>
                   <li class="nav-item mx-3">
                     <%= link_to homes_about_path, class: "text-light" do %>
@@ -91,16 +95,16 @@
                       <i class="fa-solid fa-store"></i> 商品一覧
                     <% end %>
                   </li>
-                  <li class="nav-item mx-3">
-                    <%= link_to admin_items_path, class: "text-light" do %>
-                      <i class="fa-solid fa-school"></i> 体験教室
-                    <% end %>
-                  </li>
-                  <li class="nav-item mx-3">
-                    <%= link_to blogs_path, class: "text-light" do %>
-                      <i class="fa-solid fa-pen"></i> ブログ
-                    <% end %>
-                  </li>
+                  <!--<li class="nav-item mx-3">-->
+                  <!--  <%= link_to admin_items_path, class: "text-light" do %>-->
+                  <!--    <i class="fa-solid fa-school"></i> 体験教室-->
+                  <!--  <% end %>-->
+                  <!--</li>-->
+                  <!--<li class="nav-item mx-3">-->
+                  <!--  <%= link_to blogs_path, class: "text-light" do %>-->
+                  <!--    <i class="fa-solid fa-pen"></i> ブログ-->
+                  <!--  <% end %>-->
+                  <!--</li>-->
                   <li class="nav-item mx-3">
                     <%= link_to cart_items_path, class: "text-light" do %>
                       <i class="fa-solid fa-cart-shopping"></i> カート
@@ -117,16 +121,16 @@
                       <i class="fa-solid fa-store"></i> 商品一覧
                     <% end %>
                   </li>
-                  <li class="nav-item mx-3">
-                    <%= link_to admin_items_path, class: "text-light" do %>
-                      <i class="fa-solid fa-school"></i> 体験教室
-                    <% end %>
-                  </li>
-                  <li class="nav-item mx-3">
-                    <%= link_to blogs_path, class: "text-light" do %>
-                      <i class="fa-solid fa-pen"></i> ブログ
-                    <% end %>
-                  </li>
+                  <!--<li class="nav-item mx-3">-->
+                  <!--  <%= link_to admin_items_path, class: "text-light" do %>-->
+                  <!--    <i class="fa-solid fa-school"></i> 体験教室-->
+                  <!--  <% end %>-->
+                  <!--</li>-->
+                  <!--<li class="nav-item mx-3">-->
+                  <!--  <%= link_to blogs_path, class: "text-light" do %>-->
+                  <!--    <i class="fa-solid fa-pen"></i> ブログ-->
+                  <!--  <% end %>-->
+                  <!--</li>-->
                 <% end %>
               </ul>
             </div>
@@ -136,13 +140,18 @@
     </header>
 
     <main class="mb-auto">
-      <%= flash[:notice] %>
       <%= yield %>
     </main>
 
-    <footer class="bg-secondary p-4">
-      <div class="text-light text-right">
-        <h5>
+    <footer class="p-3" style="background-color: #382E30;">
+      <div class="row text-light">
+        <h4 class="m-0 mx-3">Contact：</h4>
+        <p class="m-0">
+          〒123-4567</br>
+          静岡県静岡市清水区三保１−２−３</br>
+          090-1234-5678
+        </p>
+        <h5 class="ml-auto my-auto mr-3">
           <i class="fa-brands fa-instagram mx-2"></i>
           <i class="fa-brands fa-square-x-twitter mx-2"></i>
           <i class="fa-brands fa-line mx-2"></i>

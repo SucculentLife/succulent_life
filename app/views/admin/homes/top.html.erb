@@ -1,1 +1,38 @@
-admin/top
+<div class="card">
+  <%= image_tag 'colorfull.jpeg', class: "card-img top-img", style: "height: 300px; object-fit: cover;" %>
+</div>
+
+<div class="container">
+  <div class="row my-4">
+    <%= link_to admin_users_path, class: "col link" do %>
+      <div class="p-4 rounded" style="background-color: #E18074;">
+        <%= image_tag 'pink.jpg', style: "object-fit: cover; aspect-ratio: 2 / 1;", class: "col-12 p-0 rounded" %>
+        <h5 class="m-0 mt-3 text-center text-light"><strong>会員一覧へ</strong></h5>
+      </div>
+    <% end %>
+    <!--<%= link_to admin_users_path, class: "col link" do %>-->
+    <!--  <div class="p-4 rounded" style="background-color: #E26E51;">-->
+    <!--    <%= image_tag 'red.jpg', style: "object-fit: cover; aspect-ratio: 2 / 1;", class: "col-12 p-0 rounded" %>-->
+    <!--    <h5 class="m-0 mt-3 text-center text-light"><strong>体験教室へ</strong></h5>-->
+    <!--  </div>-->
+    <!--<% end %>-->
+    <%= link_to admin_items_path, class: "col link" do %>
+      <div class="p-4 rounded" style="background-color: #F8B549;">
+        <%= image_tag 'orange.jpg', style: "object-fit: cover; aspect-ratio: 2 / 1;", class: "col-12 p-0 rounded" %>
+        <h5 class="m-0 mt-3 text-center text-light"><strong>商品一覧へ</strong></h5>
+      </div>
+    <% end %>
+    <!--<%= link_to admin_blogs_path, class: "col link" do %>-->
+    <!--  <div class="p-4 rounded" style="background-color: #EDEF5C;">-->
+    <!--    <%= image_tag 'yellow.jpg', style: "object-fit: cover; aspect-ratio: 2 / 1;", class: "col-12 p-0 rounded" %>-->
+    <!--    <h5 class="m-0 mt-3 text-center text-light"><strong>ブログへ</strong></h5>-->
+    <!--  </div>-->
+    <!--<% end %>-->
+    <%= link_to admin_orders_path, class: "col link" do %>
+      <div class="p-4 rounded" style="background-color: #47DDA9;">
+        <%= image_tag 'green.jpg', style: "object-fit: cover; aspect-ratio: 2 / 1;", class: "col-12 p-0 rounded" %>
+        <h5 class="m-0 mt-3 text-center text-light"><strong>注文一覧へ</strong></h5>
+      </div>
+    <% end %>
+  </div>
+</div>

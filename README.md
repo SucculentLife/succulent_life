@@ -39,3 +39,5 @@
 <!--- 外部サービスの画像素材・音声素材を使用した場合は、必ずサービス名とURLを明記してください。-->
 <!--- アプリケーションの実装に使用したgem/bootstrapのリファレンスなどの記載は不要です。-->
 <!--- 使用しない場合は、使用素材の項目をREADMEから削除してください。-->
+- 写真AC：https://www.photo-ac.com/main/search?q=%E5%A4%9A%E8%82%89%E6%A4%8D%E7%89%A9&qt=&p=1&pt=A
+- Pexels：https://www.pexels.com/ja-jp/search/%E5%A4%9A%E8%82%89%E6%A4%8D%E7%89%A9/
