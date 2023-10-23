@@ -13,10 +13,14 @@
           <% end %>
         </ol>
         <div class="carousel-inner">
-          <% @photos.each do |photo| %>
-            <div class="carousel-item <%= 'active' if photo.id == @photos[0].id %>">
-              <%= image_tag photo.image.url,  class: "d-block w-100 img" %>
-            </div>
+          <% if @item.photos.present? %>
+            <% @photos.each do |photo| %>
+              <div class="carousel-item <%= 'active' if photo.id == @photos[0].id %>">
+                <%= image_tag photo.image.url,  class: "img col-12" %>
+              </div>
+            <% end %>
+          <% else %>
+            <%= image_tag "default.jpg", class: "img col-12" %>
           <% end %>
         </div>
         <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -69,16 +73,17 @@
         </div>
         <div class="col-md-7 pl-0">
           <%= form_with model: @item do |f| %>
-              <% if @item.is_active == true %>
-                <strong class="text-success"><%= admin_item_status_name(@item) %></strong>
-               <% else %>
-                <strong class="text-secondary"><%= admin_item_status_name(@item) %></strong>
-              <% end %>
+            <% if @item.is_active == true %>
+              <strong class="text-success"><%= admin_item_status_name(@item) %></strong>
+             <% else %>
+              <strong class="text-secondary"><%= admin_item_status_name(@item) %></strong>
+            <% end %>
           <% end %>
         </div>
       </div>
       <div class="row my-3 d-flex justify-content-center align-items-center">
-        <%= link_to "編集する", edit_admin_item_path, class: "btn btn-success font-weight-bold px-4 mx-auto py-2 my-3" %>
+        <%= link_to "編集する", edit_admin_item_path, class: "btn btn-success font-weight-bold px-4 py-2 m-3" %>
+        <%= link_to "削除する", admin_item_path, method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-danger font-weight-bold px-4 py-2 m-3" %>
       </div>
     </div>
   </div>

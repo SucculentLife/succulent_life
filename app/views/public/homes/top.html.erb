@@ -30,7 +30,11 @@
         <% @items.each do |item| %>
           <div class="col-md-3">
             <%= link_to item_path(item.id), class: "link" do %>
-              <%= image_tag item.photos[0].image.url, class: "col-12 img-responsive img" %>
+              <% if item.photos.present? %>
+                <%= image_tag item.photos[0].image.url, class: "col-12 img" %>
+              <% else %>
+                <%= image_tag "default.jpg", class: "img col-12" %>
+              <% end %>
               <div class="m-1">
                 <p class="text-nowrap small m-0"><%= item.name %></p>
                 <%= form_with model: item do |f| %>

@@ -5,9 +5,11 @@ class Admin::ItemsController < ApplicationController
 
   def create
     @item = Item.new(item_params)
-    if @item.save!
-      params[:item][:images].each do |image|
-        @item.photos.create(image: image, item_id: @item.id)
+    if @item.save
+      if params[:item][:images].present?
+        params[:item][:images].each do |image|
+          @item.photos.create(image: image, item_id: @item.id)
+        end
       end
       redirect_to admin_item_path(@item.id)
     else
@@ -35,14 +37,20 @@ class Admin::ItemsController < ApplicationController
     if @item.update(item_params)
       if params[:item][:images].present?
         @item.photos.delete_all
-          params[:item][:images].each do |image|
-        @item.photos.create(image: image, item_id: @item.id)
+        params[:item][:images].each do |image|
+          @item.photos.create(image: image, item_id: @item.id)
         end
       end
       redirect_to admin_item_path(params[:id])
     else
       render :edit
     end
+  end
+
+  def destroy
+    item = Item.find(params[:id])
+    item.destroy
+    redirect_to admin_items_path
   end
 
   private
