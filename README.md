@@ -26,7 +26,12 @@
 ​
 ## 設計書
 <!--テーマを設定・提出する時点では不要です-->
-- 実装機能リスト：https://docs.google.com/spreadsheets/d/1c2tiW4SbLqdSB4rPsOFhhNX6FYLbg_UAwxYobdBvq7s/edit?usp=sharing
+- ER図：https://drive.google.com/file/d/1gKe7pkmeg2U62xOQ2I_LXNwUY1O9R7HS/view?usp=sharing
+- テーブル定義書：https://docs.google.com/spreadsheets/d/1LtGHteipetsYwPNLNQOzBFu4Vy5wC5Mk_jZm-msmfuI/edit?usp=sharing
+- 詳細設計書：https://docs.google.com/spreadsheets/d/1oJ6fSIQeAKA7kd7sHwbZvX1deSD_DwnPUn2U2u3mZ5M/edit?usp=sharing
+- 画面遷移図：https://drive.google.com/file/d/1Xh-lk_F_BXc66ESg0sxK_L3EXpDdblHy/view?usp=sharing
+- ワイヤーフレーム（管理者側）：https://docs.google.com/presentation/d/1-Sc-s3oBwj43uPLELUE9sksTPjPAynv17-Zx683HNm0/edit?usp=sharing
+- ワイヤーフレーム（会員側）：https://docs.google.com/presentation/d/17_LBsEulnvuRuOQaPiAOUZQyFbckNT2FqaXHfzeWsZs/edit?usp=sharing
 ​
 ## 開発環境
 - OS：Linux(CentOS)
