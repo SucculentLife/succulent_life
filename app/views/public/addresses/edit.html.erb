@@ -1,0 +1,38 @@
+<div class="container">
+  <div class="row">
+    <h4 class="m-5 px-4 bg-light">配送先編集</h4>
+  </div>
+  
+  <% if @address.errors.any? %>
+    <%= @address.errors.count %>件のエラーが発生しました
+    <ul>
+      <% @address.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  <% end %>
+
+  <%= form_with model: @address, url: address_path do |f| %>
+    <div class="row">
+      <p class="col-12 col-md-4 col-lg-3 text-nowrap">
+        郵便番号（ハイフンなし）
+      </p>
+      <p class="col-12 col-md-5"><%= f.text_field :postal_code, autofocus: true, placeholder: "00000000" %></p>
+    </div>
+    <div class="row">
+      <p class="col-12 col-md-4 col-lg-3 text-nowrap">
+        住所
+      </p>
+      <p class="col-12 col-md-5"><%= f.text_field :address, class: "col-12 px-1", placeholder: "東京都渋谷区代々木神園町0-0" %></p>
+    </div>
+    <div class="row">
+      <p class="col-12 col-md-4 col-lg-3 text-nowrap">
+        宛名
+      </p>
+      <p class="col-12 col-md-5"><%= f.text_field :name, placeholder: "令和道子" %></p>
+      <div class="col-12 col-md-3 my-3">
+        <%= f.submit "変更内容を保存", class: "btn btn-success font-weight-bold px-4 py-1" %>
+      </div>
+    </div>
+  <% end %>
+</div>

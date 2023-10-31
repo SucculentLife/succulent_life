@@ -1,0 +1,57 @@
+<div class="container">
+  <div class="row">
+    <h4 class="m-5 px-4 bg-light">会員情報編集</h4>
+  </div>
+
+  <%= form_with model: @user do |f| %>
+    <div class="row">
+      <p class="col-sm-4 col-md-3 col-lg-2 text-nowrap">
+        氏名
+      </p>
+      <div class="col-sm-8 d-md-flex">
+        <p class="pr-4 text-nowrap"><%= f.text_field :last_name, placeholder: "令和" %></p>
+        <p class="text-nowrap"><%= f.text_field :first_name, placeholder: "道子" %></p>
+      </div>
+    </div>
+    <div class="row">
+      <p class="col-sm-4 col-md-3 col-lg-2 text-nowrap">
+        フリガナ
+      </p>
+      <div class="col-sm-8 d-md-flex">
+        <p class="pr-4 text-nowrap"><%= f.text_field :last_name_kana, placeholder: "レイワ" %></p>
+        <p class="text-nowrap"><%= f.text_field :first_name_kana, placeholder: "ミチコ" %></p>
+      </div>
+    </div>
+    <div class="row">
+      <p class="col-sm-4 col-md-3 col-lg-2 text-nowrap">
+        郵便番号
+      </p>
+      <p class="col-sm-8"><%= f.text_field :postal_code, placeholder: "00000000" %></p>
+    </div>
+    <div class="row">
+      <p class="col-sm-4 col-md-3 col-lg-2 text-nowrap">
+        住所
+      </p>
+      <p class="col-sm-8 text-nowrap"><%= f.text_field :address, class: "col-sm-8 px-1", placeholder: "東京都渋谷区代々木神園町0-0" %></p>
+    </div>
+    <div class="row">
+      <p class="col-sm-4 col-md-3 col-lg-2 text-nowrap">
+        電話番号
+      </p>
+      <p class="col-sm-8"><%= f.text_field :telephone_number, placeholder: "0000000000" %></p>
+    </div>
+    <div class="row">
+      <p class="col-sm-4 col-md-3 col-lg-2 text-nowrap">
+        メールアドレス
+      </p>
+      <p class="col-sm-8"><%= f.email_field :email, autocomplete: "email", placeholder: "sample@example.com" %></p>
+    </div>
+    <div class="row mb-4">
+      <div class="col-sm-4 col-md-3 col-lg-2 text-nowrap"></div>
+      <div class="col-sm-8">
+        <%= f.submit "編集内容を保存", class: "actions btn btn-success font-weight-bold px-5 py-1 mr-5 my-2" %>
+        <%= link_to "退会する", users_confirm_path, class: "btn btn-danger font-weight-bold px-3 py-1 my-2" %>
+      </div>
+    </div>
+  <% end %>
+</div>

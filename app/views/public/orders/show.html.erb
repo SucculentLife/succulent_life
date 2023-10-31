@@ -1,0 +1,84 @@
+<div class="container">
+  <div class="row">
+    <h4 class="m-5 px-4 bg-light">注文履歴詳細</h4>
+  </div>
+
+  <div class="row">
+    <div class="col-8">
+      <p><strong>注文情報</strong></p>
+      <table class="table table-bordered">
+        <tr>
+          <th class="bg-light text-nowrap">注文日</th>
+          <td class="text-nowrap"><%= @order.created_at.strftime('%Y/%m/%d') %></td>
+        </tr>
+        <tr>
+          <th class="bg-light align-middle text-nowrap">配送先</th>
+          <td class="text-nowrap">
+            〒<%= @order.postal_code %><br/>
+            <%= @order.address %><br/>
+            <%= @order.name %>
+          </td>
+        </tr>
+        <tr>
+          <th class="bg-light text-nowrap">支払方法</th>
+          <td class="text-nowrap"><%= @order.payment_method_i18n %></td>
+        </tr>
+        <tr>
+          <th class="bg-light text-nowrap">ステータス</th>
+          <td class="text-nowrap"><%= @order.status_i18n %></td>
+        </tr>
+      </table>
+    </div>
+    <div class="col-4">
+      <p><strong>請求情報</strong></p>
+      <table class="table table-bordered">
+        <tr>
+          <th class="bg-light text-nowrap">商品合計</th>
+          <td class="text-nowrap"><%= (@order.total_payment - @order.shipping_cost).to_s(:delimited) %></td>
+        </tr>
+        <tr>
+          <th class="bg-light text-nowrap">配送料</th>
+          <td class="text-nowrap"><%= @order.shipping_cost.to_s(:delimited) %></td>
+        </tr>
+        <tr>
+          <th class="bg-light text-nowrap">
+            <strong>ご請求額</strong>
+          </th>
+          <td class="text-nowrap">
+            <strong><%= @order.total_payment.to_s(:delimited) %></strong>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-10">
+      <p><strong>注文内容</strong></p>
+      <table class="table table-bordered">
+        <thead class="thead-light">
+          <tr>
+            <th>商品</th>
+            <th>単価（税込）</th>
+            <th>個数</th>
+            <th>小計</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @order.order_details.each do |order_detail| %>
+            <tr>
+              <td><%= order_detail.item.name %></td>
+              <td><%= order_detail.price.to_s(:delimited) %></td>
+              <td><%= order_detail.amount %></td>
+              <td><%= order_detail.subtotal.to_s(:delimited) %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="row">
+    <%= link_to "<< 注文履歴一覧へ戻る", orders_path, style: "text-decoration: underline;" %>
+  </div>
+</div>
