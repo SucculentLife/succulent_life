@@ -1,0 +1,18 @@
+<div class="container">
+  <div class="row">
+    <h4 class="m-5 px-4 bg-light">ブログ新規投稿</h4>
+  </div>
+  
+  <% if @blog.errors.any? %>
+    <%= @blog.errors.count %>件のエラーが発生しました
+    <ul>
+      <% @blog.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  <% end %>  
+  
+  <%= form_with model: @blog, url: admin_blogs_path do |f| %>
+    
+  <% end %>
+</div>
