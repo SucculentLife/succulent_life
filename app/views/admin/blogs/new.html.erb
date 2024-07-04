@@ -13,6 +13,49 @@
   <% end %>  
   
   <%= form_with model: @blog, url: admin_blogs_path do |f| %>
+    <div class="row m-3 d-flex justify-content-center">
+      <div class="col-md-2 text-nowrap px-0">
+        投稿画像
+      </div>
+      <div class="col-md-8 px-0">
+        <%= f.file_field :images, multiple: true, onchange: "loadImage(this);" %>
+        <div id="preview"></div>
+      </div>
+    </div>
     
+    <div class="row m-3 d-flex justify-content-center">
+      <div class="col-md-2 text-nowrap px-0">
+        タイトル
+      </div>
+      <div class="col-md-8 px-0">
+        <%= f.text_field :title, placeholder: "タイトル", class: "col-12" %>
+      </div>
+    </div>
+
+    <div class="row m-3 d-flex justify-content-center">
+      <div class="col-md-2 text-nowrap px-0">
+        本文
+      </div>
+      <div class="col-md-8 px-0">
+        <%= f.text_area :body, placeholder: "ここにブログの内容を記述する", class: "col-12", rows: "6" %>
+      </div>
+    </div>
+    
+    <div class="row m-3 d-flex justify-content-center">
+      <%= f.submit "投稿", class: "actions btn btn-success font-weight-bold px-5 py-1 mb-3" %>
+    </div>
   <% end %>
 </div>
+
+<script>
+  function loadImage(obj) {
+    document.getElementById('preview').innerHTML = '';
+  	for (i = 0; i < obj.files.length; i++) {
+  		var fileReader = new FileReader();
+  		fileReader.onload = (function (e) {
+  			document.getElementById('preview').innerHTML += '<img style="object-fit: cover;" class="p-3 col-3" src="' + e.target.result + '">';
+  		});
+  		fileReader.readAsDataURL(obj.files[i]);
+  	}
+  }
+</script>
