@@ -23,8 +23,7 @@ class Admin::BlogsController < ApplicationController
   
   def show
     @blog = Blog.find(params[:id])
-    # @photos = @blog.photos
-    @i = 0
+    @photos = @blog.photos
   end
   
   def edit
