@@ -4,9 +4,9 @@
   </div>
   
   <div class="row">
-    <% @photos.each do |photo| %>
+    <% @blog_images.each do |blog_image| %>
       <div class="col-3 mx-auto">
-        <%= image_tag photo.image.url, class: "img col-12"; %>
+        <%= image_tag blog_image.image.url, class: "img col-12"; %>
       </div>
     <% end %>
   </div>
