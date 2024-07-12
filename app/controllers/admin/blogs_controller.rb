@@ -6,9 +6,9 @@ class Admin::BlogsController < ApplicationController
   def create
     @blog = Blog.new(blog_params)
     if @blog.save
-      if params[:blog][:blogs].present?
-        params[:blog][:blogs].each do |blog|
-          @blog.photos.create(image: image, blog_id: @blog.id)
+      if params[:blog][:images].present?
+        params[:blog][:images].each do |image|
+          @blog.blog_images.create(image: image, blog_id: @blog.id)
         end
       end
       redirect_to admin_blog_path(@blog.id)
@@ -23,22 +23,21 @@ class Admin::BlogsController < ApplicationController
   
   def show
     @blog = Blog.find(params[:id])
-    # @photos = @blog.photos
-    @i = 0
+    @blog_images = @blog.blog_images
   end
   
   def edit
     @blog = Blog.find(params[:id])
-    @photos = @blog.photos
+    @blog_images = @blog.blog_images
   end
   
   def update
     @blog = Blog.find(params[:id])
     if @blog.update(blog_params)
-      if params[:blog][:blogs].present?
-        @blog.photos.delete_all
-        params[:item][:items].each do |image|
-          @blog.photos.create(image: image, blog_id: @blog.id)
+      if params[:blog][:images].present?
+        @blog.blog_images.delete_all
+        params[:blog][:images].each do |image|
+          @blog.blog_images.create(image: image, blog_id: @blog.id)
         end
       end
       redirect_to admin_blog_path(parems[:id])
@@ -55,6 +54,6 @@ class Admin::BlogsController < ApplicationController
   
   private
    def blog_params
-     params.require(:blog).permit(:title, :body, photos_attributes: [:image])
+     params.require(:blog).permit(:title, :body, blog_images_attributes: [:image])
    end
 end
