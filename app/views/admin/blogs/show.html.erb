@@ -9,13 +9,15 @@
   
   <div class="row">
     <% @blog_images.each do |blog_image| %>
-      <div class="col-3 mx-auto" >
-        <%= image_tag blog_image.image.url, class: "img col-12", style: "object-fit: cover;" %>
+      <div class="col-3" >
+        <%= image_tag blog_image.image.url, class: "col-12", style: "object-fit: cover; height: 300px;" %>
       </div>
     <% end %>
   </div>
   
-  <div class="row m-4 px-5">
-    <%= @blog.body %>
+  <div class="row m-4">
+    <div class="text-center mx-auto">
+      <%= h(@blog.body).gsub(/\n|\r|\r\n/, "<br>").html_safe %>
+    </div>
   </div>
 </div>
