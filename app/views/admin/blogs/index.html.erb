@@ -1,0 +1,38 @@
+<div class="container">
+  <div class="row">
+    <h4 class="m-5 px-4 bg-light">ブログ一覧</h4>
+    <div class="d-flex-none ml-auto mt-auto">
+      <%= link_to new_admin_blog_path do %>
+        <i class="fas fa-plus fa-2x text-secondary"></i>
+      <% end %>
+    </div>
+  </div>
+  
+  <div class="row mt-4">
+    <table class="table">
+      <thead class="thead-light">
+        <tr>
+          <th>投稿日</th>
+          <th>タイトル</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @blogs.each do |blog| %>
+          <tr>
+            <td class="align-middle"><%= blog.created_at.to_s(:datetime_jp) %></td>
+            <td class="align-middle">
+              <%= link_to admin_blog_path(blog.id), class: "link" do %>
+                <%= blog.title %>
+              <% end %>
+            </td>
+            <td class="align-middle text-center">
+              <%= link_to "編集する", edit_admin_blog_path(blog.id), class: "btn btn-success px-3 py-1 m-0 text-nowrap" %>
+              <%= link_to "削除する", admin_blog_path(blog.id), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-danger px-3 py-1 m-0 ml-5 text-nowrap" %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
