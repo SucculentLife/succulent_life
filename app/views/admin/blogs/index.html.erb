@@ -2,4 +2,31 @@
   <div class="row">
     <h4 class="m-5 px-4 bg-light">ブログ一覧</h4>
   </div>
+  
+  <div class="row mt-4">
+    <table class="table">
+      <thead class="thead-light">
+        <tr>
+          <th>投稿日</th>
+          <th>タイトル</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @blogs.each do |blog| %>
+          <tr>
+            <td class="align-middle"><%= blog.created_at.to_s(:datetime_jp) %></td>
+            <td class="align-middle">
+              <%= link_to admin_blog_path(blog.id), class: "link" do %>
+                <%= blog.title %>
+              <% end %>
+            </td>
+            <td class="align-middle">
+              
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
 </div>
