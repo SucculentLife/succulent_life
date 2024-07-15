@@ -40,7 +40,7 @@ class Admin::BlogsController < ApplicationController
           @blog.blog_images.create(image: image, blog_id: @blog.id)
         end
       end
-      redirect_to admin_blog_path(parems[:id])
+      redirect_to admin_blog_path(params[:id])
     else
       render :edit
     end
