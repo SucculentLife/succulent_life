@@ -1,0 +1,23 @@
+<div class="container">
+  <div class="row">
+    <h3 class="mx-auto mt-3"><strong>〜 Blogs 〜</strong></h3>
+  </div>
+  
+  <div class="row">
+    <table class="table">
+      <tbody>
+        <% @blogs.each do |blog| %>
+          <tr>
+            <td><%= blog.created_at.to_s(:datetime_jp) %></td>
+            <td>
+              <%= link_to blog_path(blog.id), class: "link" do %>
+                <%= blog.title %>
+              <% end %>
+            </td>
+            <td></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
