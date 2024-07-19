@@ -11,10 +11,14 @@
             <td><%= blog.created_at.to_s(:datetime_jp) %></td>
             <td>
               <%= link_to blog_path(blog.id), class: "link" do %>
-                <%= blog.title %>
+                <h5><%= blog.title %></h5>
               <% end %>
             </td>
-            <td></td>
+            <td>
+              <%= link_to blog_path(blog.id), class: "link" do %>
+                <%= blog.body.truncate(24, omission: "…") %>
+              <% end %>
+            </td>
           </tr>
         <% end %>
       </tbody>
