@@ -8,10 +8,10 @@
       <tbody>
         <% @blogs.each do |blog| %>
           <tr>
-            <td><%= blog.created_at.to_s(:datetime_jp) %></td>
             <td>
               <%= link_to blog_path(blog.id), class: "link" do %>
                 <h5><%= blog.title %></h5>
+                <p class="small, text-border"><%= blog.created_at.to_s(:datetime_jp) %></p>
               <% end %>
             </td>
             <td>
