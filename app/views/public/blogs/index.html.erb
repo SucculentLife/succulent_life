@@ -8,14 +8,16 @@
       <tbody>
         <% @blogs.each do |blog| %>
           <tr>
-            <td>
+            <td class="col-xs-12">
               <%= link_to blog_path(blog.id), class: "link" do %>
                 <h5><%= blog.title %></h5>
                 <p class="text-black-50"><%= blog.created_at.to_s(:datetime_jp) %></p>
               <% end %>
             </td>
-            <td>
-              <%= image_tag blog.blog_images[0].image.url, class: "col-12 img" %>
+            <td class="col-2">
+              <% if blog.blog_images.present? %>
+                <%= image_tag blog.blog_images[0].image.url, class: "col-12 img" %>
+              <% end %>
               <!--<%= link_to blog_path(blog.id), class: "link" do %>-->
               <!--  <%= blog.body.truncate(24, omission: "…") %>-->
               <!--<% end %>-->
