@@ -20,11 +20,11 @@
   </div>
   
   <div class="row">
-    <div class="col">
-      <%= link_to ""
-    </div>
-    <div class="col">
-      
-    </div>
+    <% if @blog.previous.present? %>
+      <%= link_to "PREV", blog_path(@blog.previous), class: "btn_arrow_back"%>
+    <% end %>
+    <% if @blog.next.present? %>
+      <%= link_to "NEXT", blog_path(@blog.next), class: "btn_arrow" %>
+    <% end %>
   </div>
 </div>
