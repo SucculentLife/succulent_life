@@ -19,12 +19,12 @@
     </div>
   </div>
   
-  <div class="row">
+  <div class="row mb-4">
     <% if @blog.previous.present? %>
-      <%= link_to "PREV", blog_path(@blog.previous), class: "btn_arrow_back"%>
+      <%= link_to "＜ PREV", blog_path(@blog.previous), class: "link h5"%>
     <% end %>
     <% if @blog.next.present? %>
-      <%= link_to "NEXT", blog_path(@blog.next), class: "btn_arrow" %>
+      <%= link_to "NEXT ＞", blog_path(@blog.next), class: "link ml-auto h5" %>
     <% end %>
   </div>
 </div>
