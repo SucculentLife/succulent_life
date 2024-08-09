@@ -26,7 +26,11 @@
 
     <div class="col">
       <div class="row">
-        
+        <% @blogs.each do |blog| %>
+          <%= link_to blog_path(blog.id), class: "link" do %>
+            <%= blog.title %>
+          <% end %>
+        <% end %>
       </div>
       <div class="row">
         <div class="row"><h4 class="my-3"><strong>新着商品</strong></h4></div>
