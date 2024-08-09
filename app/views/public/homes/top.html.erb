@@ -26,11 +26,20 @@
 
     <div class="col">
       <div class="row">
-        <% @blogs.each do |blog| %>
-          <%= link_to blog_path(blog.id), class: "link" do %>
-            <%= blog.title %>
-          <% end %>
-        <% end %>
+        <div class="row"><h4 class="my-3"><strong>新着ブログ</strong></h4></div>
+        <div class="row col-12">
+          <table class ="table">
+            <% @blogs.each do |blog| %>
+              <tr>
+                <td>
+                  <%= link_to blog_path(blog.id), class: "link" do %>
+                    <%= blog.title %>
+                  <% end %>
+                </td>
+              </tr>
+            <% end %>
+          </table>
+        </div>
       </div>
       <div class="row">
         <div class="row"><h4 class="my-3"><strong>新着商品</strong></h4></div>
