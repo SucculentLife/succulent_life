@@ -21,7 +21,7 @@
         <%= f.file_field :images, multiple: true, onchange: "loadImage(this);" %>
         <div id="preview">
           <% if @photos.present? %>
-            <% @item.photos.each do |photo| %>
+            <% @photos do |photo| %>
               <%= image_tag photo.image.url, style: "height: 100px;", class: "img p-3" %>
             <% end %>
           <% end %>

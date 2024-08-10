@@ -1,0 +1,30 @@
+<div class="container">
+  <div class="row">
+    <h4 class="mx-auto mt-5" style="text: #82392E;">＊＊＊　<%= @blog.title %>　＊＊＊</h4>
+  </div>
+  
+  <div class="mb-4 text-right">
+    <%= @blog.created_at.to_s(:datetime_jp) %>
+  </div>
+  
+  <div class="row">
+    <% @blog_images.each do |blog_image| %>
+      <%= image_tag blog_image.image.url, class: "col-3 mx-auto", style: "object-fit: cover; max-height: 500px;" %>
+    <% end %>
+  </div>
+  
+  <div class="row mb-4">
+    <div class="text-center mx-auto my-4">
+      <%= h(@blog.body).gsub(/\n|\r|\r\n/, "<br>").html_safe %>
+    </div>
+  </div>
+  
+  <div class="row mb-4">
+    <% if @blog.previous.present? %>
+      <%= link_to "＜ PREV", blog_path(@blog.previous), class: "link h5"%>
+    <% end %>
+    <% if @blog.next.present? %>
+      <%= link_to "NEXT ＞", blog_path(@blog.next), class: "link ml-auto h5" %>
+    <% end %>
+  </div>
+</div>

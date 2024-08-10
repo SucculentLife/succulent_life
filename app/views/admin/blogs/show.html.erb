@@ -1,0 +1,26 @@
+<div class="container">
+  <div class="row">
+    <h4 class="mx-auto mt-5" style="text: #82392E;">＊＊＊　<%= @blog.title %>　＊＊＊</h4>
+  </div>
+  
+  <div class="mb-4 text-right">
+    <%= @blog.created_at.to_s(:datetime_jp) %>
+  </div>
+  
+  <div class="row">
+    <% @blog_images.each do |blog_image| %>
+      <%= image_tag blog_image.image.url, class: "col-3 mx-auto", style: "object-fit: cover; max-height: 500px;" %>
+    <% end %>
+  </div>
+  
+  <div class="row m-4">
+    <div class="text-center mx-auto">
+      <%= h(@blog.body).gsub(/\n|\r|\r\n/, "<br>").html_safe %>
+    </div>
+  </div>
+  
+  <div class="row justify-content-center mb-5">
+    <%= link_to "編集する", edit_admin_blog_path(@blog.id), class: "btn btn-success px-3 py-1 my-0 mx-5 text-nowrap" %>
+    <%= link_to "削除する", admin_blog_path(@blog.id), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-danger px-3 py-1 my-0 mx-5 text-nowrap" %>
+  </div>
+</div>
