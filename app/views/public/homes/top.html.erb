@@ -25,35 +25,53 @@
     </div>
 
     <div class="col">
-      <div class="row"><h4 class="my-3"><strong>新着商品</strong></h4></div>
       <div class="row">
-        <% @items.each do |item| %>
-          <div class="col-md-3">
-            <%= link_to item_path(item.id), class: "link" do %>
-              <% if item.photos.present? %>
-                <%= image_tag item.photos[0].image.url, class: "col-12 img" %>
-              <% else %>
-                <%= image_tag "default.jpg", class: "img col-12" %>
-              <% end %>
-              <div class="m-1">
-                <p class="text-nowrap small m-0"><%= item.name %></p>
-                <%= form_with model: item do |f| %>
-                  <% if item.is_active == true %>
-                    <p class="text-nowrap small m-0">¥<%= (item.price * 1.1).floor.to_s(:delimited) %>-</p>
-                  <% else %>
-                    <div class="d-flex">
-                      <p class="text-nowrap small m-0"><del>¥<%= (item.price * 1.1).floor.to_s(:delimited) %>-</del></p>
-                      <p class="text-secondary text-nowrap small m-0 ml-3"><%= item_status_name(item) %></p>
-                    </div>
+        <div class="row"><h4 class="my-3"><strong>新着ブログ</strong></h4></div>
+        <div class="row col-12">
+          <table class ="table">
+            <% @blogs.each do |blog| %>
+              <tr>
+                <td>
+                  <%= link_to blog_path(blog.id), class: "link" do %>
+                    <%= blog.title %>
                   <% end %>
-                <% end %>
-              </div>
+                </td>
+              </tr>
             <% end %>
-          </div>
-        <% end %>
+          </table>
+        </div>
       </div>
       <div class="row">
-        <%= link_to "全ての商品を見る >>", items_path, class: "ml-auto my-3", style: "text-decoration: underline;" %>
+        <div class="row"><h4 class="my-3"><strong>新着商品</strong></h4></div>
+        <div class="row">
+          <% @items.each do |item| %>
+            <div class="col-md-3">
+              <%= link_to item_path(item.id), class: "link" do %>
+                <% if item.photos.present? %>
+                  <%= image_tag item.photos[0].image.url, class: "col-12 img" %>
+                <% else %>
+                  <%= image_tag "default.jpg", class: "img col-12" %>
+                <% end %>
+                <div class="m-1">
+                  <p class="text-nowrap small m-0"><%= item.name %></p>
+                  <%= form_with model: item do |f| %>
+                    <% if item.is_active == true %>
+                      <p class="text-nowrap small m-0">¥<%= (item.price * 1.1).floor.to_s(:delimited) %>-</p>
+                    <% else %>
+                      <div class="d-flex">
+                        <p class="text-nowrap small m-0"><del>¥<%= (item.price * 1.1).floor.to_s(:delimited) %>-</del></p>
+                        <p class="text-secondary text-nowrap small m-0 ml-3"><%= item_status_name(item) %></p>
+                      </div>
+                    <% end %>
+                  <% end %>
+                </div>
+              <% end %>
+            </div>
+          <% end %>
+        </div>
+        <div class="row col-12">
+          <%= link_to "全ての商品を見る >>", items_path, class: "ml-auto my-3", style: "text-decoration: underline;" %>
+        </div>
       </div>
     </div>
   </div>
