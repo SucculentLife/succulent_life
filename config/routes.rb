@@ -39,5 +39,6 @@ Rails.application.routes.draw do
     resources :users, only: [:index, :show, :edit, :update]
     resources :orders, only: [:show, :update, :index]
     resources :blogs, only: [:new, :create, :index, :show, :edit, :update, :destroy]
+    resources :calendars, only: [:new, :create, :index, :show, :edit, :update, :destroy]
   end
 end
